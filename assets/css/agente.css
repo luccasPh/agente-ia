@@ -1,0 +1,151 @@
+body {
+    background-image: url("../../assets/img/space.jpg");
+}
+
+#nave img {
+    position:absolute;
+    top:0;
+    left:0;
+    right:350;
+    bottom:0;
+    margin:auto;
+}
+
+#planeta1 img {
+    position:absolute;
+    display: inline-block;
+    top:0;
+    left:0;
+    right:950;
+    bottom:0;
+    margin:auto;
+}
+
+#planeta1 #alien1 {
+    position:absolute;
+    display: inline-block;
+    top:0;
+    left:0;
+    right:1100;
+    bottom:200;
+    margin:auto;
+}
+
+#planeta1 #alien2 {
+    position:absolute;
+    display: inline-block;
+    top:0;
+    left:0;
+    right:950;
+    bottom:200;
+    margin:auto;
+}
+
+#planeta1 #alien3 {
+    position:absolute;
+    display: inline-block;
+    top:0;
+    left:0;
+    right:800;
+    bottom:200;
+    margin:auto;
+}
+
+#planeta1 #astro1 {
+    position:absolute;
+    display: inline-block;
+    top:50;
+    left:0;
+    right:1100;
+    bottom:0;
+    margin:auto;
+}
+
+#planeta1 #astro2 {
+    position:absolute;
+    display: inline-block;
+    top:50;
+    left:0;
+    right:950;
+    bottom:0;
+    margin:auto;
+}
+
+#planeta1 #astro2 {
+    position:absolute;
+    display: inline-block;
+    top:50;
+    left:0;
+    right:800;
+    bottom:0;
+    margin:auto;
+}
+
+#planeta2 img {
+    position:absolute;
+    top:0;
+    left:950;
+    right:0;
+    bottom:0;
+    margin:auto;
+}
+
+#planeta2 #alien1 {
+    position:absolute;
+    display: inline-block;
+    top:0;
+    left:1100;
+    right:0;
+    bottom:200;
+    margin:auto;
+}
+
+#planeta2 #alien2 {
+    position:absolute;
+    display: inline-block;
+    top:0;
+    left:950;
+    right:0;
+    bottom:200;
+    margin:auto;
+}
+
+#planeta2 #alien3 {
+    position:absolute;
+    display: inline-block;
+    top:0;
+    left:800;
+    right:0;
+    bottom:200;
+    margin:auto;
+}
+
+#planeta2 #astro1 {
+    position:absolute;
+    display: inline-block;
+    top:50;
+    left:1100;
+    right:0;
+    bottom:0;
+    margin:auto;
+}
+
+#planeta2 #astro2 {
+    position:absolute;
+    display: inline-block;
+    top:50;
+    left:950;
+    right:0;
+    bottom:0;
+    margin:auto;
+}
+
+#planeta2 #astro3 {
+    position:absolute;
+    display: inline-block;
+    top:50;
+    left:800;
+    right:0;
+    bottom:0;
+    margin:auto;
+}
