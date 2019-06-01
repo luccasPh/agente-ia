@@ -14,6 +14,7 @@
     <div id="planeta1">
         <img src="assets/img/planeta1.png">
 
+        <!--
         <img src="assets/img/alien.png" id="alien1">
         <img src="assets/img/alien.png" id="alien2">
         <img src="assets/img/alien.png" id="alien3">
@@ -21,6 +22,7 @@
         <img src="assets/img/astro.png" id="astro1">
         <img src="assets/img/astro.png" id="astro2">
         <img src="assets/img/astro.png" id="astro3">
+        -->
         
     </div>
     <div id="planeta2">
@@ -32,7 +34,47 @@
         
         <img src="assets/img/astro.png" id="astro1">
         <img src="assets/img/astro.png" id="astro2">
-        <img src="assets/img/astro.png" id="astro3">
-    </div>  
+    
+    </div>
+
+    <script src="assets/js/jquery-3.4.1.js"></script>
+    <script src="assets/js/agente.js"></script>
+    <script>
+        var nave = $('#nave img');
+        var planeta1 = document.getElementById('planeta1');
+        var planeta2 = document.getElementById('planeta2');
+        var nave = document.getElementById('nave');
+       
+
+        let margem = new Margem();
+        let m2 = new Margem();
+        m2.canibais = 3;
+        m2.canoa = 1;
+        m2.missionarios = 3;
+        margem.lado_oposto = m2;
+        let busca = new Busca(margem);
+        let m = busca.Buscar();
+
+      $('#planeta2').prepend('<img src="assets/img/astro.png" id="astro3" />')
+
+        
+        
+    </script>  
 </body>
 </html>
+
+nave.animate({
+    right: "700"
+},2500)
+
+while(m != null){
+            
+    console.log("Margem E: " + "canibais: " + m.canibais + " missionarios: " + m.missionarios + " canoa: " + m.canoa);
+    
+    if(m.lado_oposto != null){
+        console.log("Canoa  :  " + m.passageiros[0]+ " " + m.passageiros[1]);
+        console.log("Margem D: " + "canibais: " + m.lado_oposto.canibais + " missionarios: " + m.lado_oposto.missionarios + " canoa: " + m.lado_oposto.canoa);
+        console.log("----------------------------------------------------");
+    }
+    m = m.estado_anterior;
+}
