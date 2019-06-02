@@ -5,42 +5,30 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="assets/css/agente.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
+    <div id="titulo">
+        <img src="assets/img/titulo.png">
+    </div>
+
+        <button class="btn btn-primary" type="button" onclick="start()">Start</button>
+       
     <div id="nave">
-        <img src="assets/img/nave_right_1.png">
     </div>
 
     <div id="planeta1">
         <img src="assets/img/planeta1.png">
-
-        <!--
-        <img src="assets/img/alien.png" id="alien1">
-        <img src="assets/img/alien.png" id="alien2">
-        <img src="assets/img/alien.png" id="alien3">
-        
-        <img src="assets/img/astro.png" id="astro1">
-        <img src="assets/img/astro.png" id="astro2">
-        <img src="assets/img/astro.png" id="astro3">
-        -->
         
     </div>
     <div id="planeta2">
         <img src="assets/img/planeta2.png">
-
-        <img src="assets/img/alien.png" id="alien1">
-        <img src="assets/img/alien.png" id="alien2">
-        <img src="assets/img/alien.png" id="alien3">
-        
-        <img src="assets/img/astro.png" id="astro1">
-        <img src="assets/img/astro.png" id="astro2">
     
     </div>
 
     <script src="assets/js/jquery-3.4.1.js"></script>
     <script src="assets/js/agente.js"></script>
     <script>
-        var nave = $('#nave img');
         var planeta1 = document.getElementById('planeta1');
         var planeta2 = document.getElementById('planeta2');
         var nave = document.getElementById('nave');
@@ -54,27 +42,103 @@
         margem.lado_oposto = m2;
         let busca = new Busca(margem);
         let m = busca.Buscar();
-
-      $('#planeta2').prepend('<img src="assets/img/astro.png" id="astro3" />')
-
         
+        function start(){
+            $('#titulo img').remove()
+            $('button').remove()
+            $('#nave').append('<img src="assets/img/nave_right_1.png" id="nR">')
+            for(let i=1; i<4; ++i){
+                $('#planeta2').append('<img class="aliAst" src="assets/img/alien.png" id="alien' + i +'">')
+                $('#planeta2').append('<img class="aliAst" src="assets/img/astro.png" id="astro' + i +'">')
+            }
+
+            setTimeout(function() { rodar(); }, 500);
+        }
         
+
+        function rodar(){
+            if (m.lado_oposto.estado_anterior.estado_anterior == null){
+                atualizar()
+                setTimeout(function() {fim()}, 3000);
+                return false
+            }
+            atualizar()
+            agente()
+            window.setTimeout(rodar, 3000)
+        }
+
+        function agente(){
+            m = m.estado_anterior;
+        }
+        function fim(){
+            $('#titulo').append('<img src="assets/img/fim.gif">')
+        }
+
+        function atualizar(){
+            if(m.canoa == 1){
+                $('#planeta2 .aliAst').remove()
+                $('#nave img').remove()
+
+                for(i=0; i< m.estado_anterior.canibais; ++i) $('#planeta2').append('<img class="aliAst" src="assets/img/alien.png" id="alien' + (i+1) +'">')
+                for(i=0; i< m.estado_anterior.missionarios; ++i) $('#planeta2').append('<img class="aliAst" src="assets/img/astro.png" id="astro' + (i+1) +'">')
+
+                if(m.passageiros[0] == 2) $('#nave').append('<img src="assets/img/nave_right_3.png" id="nR">')
+                
+                else if(m.passageiros[1] == 2) $('#nave').append('<img src="assets/img/nave_right_4.png" id="nR">')
+
+                else if(m.passageiros[0] == 1 && m.passageiros[1] == 1) $('#nave').append('<img src="assets/img/nave_right_2.png" id="nR">')
+
+                else if(m.passageiros[0] == 1 && m.passageiros[1] == 0) $('#nave').append('<img src="assets/img/nave_right_5.png" id="nR">')
+
+                else if(m.passageiros[0] == 0 && m.passageiros[1] == 1) $('#nave').append('<img src="assets/img/nave_right_6.png" id="nR">')
+                    
+                $('#nave #nR').animate({right: '800', bottom: '50'}, 3000)
+
+                window.setTimeout(esperaNave1,3000);
+
+                function esperaNave1(){
+                    $('#nave img').remove()
+                    $('#nave').append('<img src="assets/img/nave_right_1.png" id="nL">')
+                    
+
+                    for(i=0; i< m.lado_oposto.estado_anterior.canibais; ++i) $('#planeta1').append('<img class="aliAst" src="assets/img/alien.png" id="alien' + (i+1) +'">')
+                    for(i=0; i< m.lado_oposto.estado_anterior.missionarios; ++i) $('#planeta1').append('<img class="aliAst" src="assets/img/astro.png" id="astro' + (i+1) +'">')
+                }
+            }
+            
+            else{
+                $('#planeta1 .aliAst').remove()
+
+                $('#nave img').remove()
+
+                for(i=0; i< m.lado_oposto.estado_anterior.canibais; ++i) $('#planeta1').append('<img class="aliAst" src="assets/img/alien.png" id="alien' + (i+1) +'">')
+                for(i=0; i< m.lado_oposto.estado_anterior.missionarios; ++i) $('#planeta1').append('<img class="aliAst" src="assets/img/astro.png" id="astro' + (i+1) +'">')
+
+                if(m.passageiros[0] == 2) $('#nave').append('<img src="assets/img/nave_left_3.png" id="nL">')
+                
+                else if(m.passageiros[1] == 2) $('#nave').append('<img src="assets/img/nave_left_4.png" id="nL">')
+
+                else if(m.passageiros[0] == 1 && m.passageiros[1] == 1) $('#nave').append('<img src="assets/img/nave_left_2.png" id="nL">')
+
+                else if(m.passageiros[0] == 1 && m.passageiros[1] == 0) $('#nave').append('<img src="assets/img/nave_left_6.png" id="nL">')
+
+                else if(m.passageiros[0] == 0 && m.passageiros[1] == 1) $('#nave').append('<img src="assets/img/nave_left_5.png" id="nL">')
+
+                $('#nave #nL').animate({left: '800', bottom: '50'}, 3000)
+
+                window.setTimeout(esperaNave2,3000);
+
+                function esperaNave2(){
+                    $('#nave img').remove()
+                    $('#nave').append('<img src="assets/img/nave_left_1.png" id="nR">')
+
+                    for(i=0; i<m.estado_anterior.canibais; ++i) $('#planeta2').append('<img class="aliAst" src="assets/img/alien.png" id="alien' + (i+1) +'">')
+                    for(i=0; i<m.estado_anterior.missionarios; ++i) $('#planeta2').append('<img class="aliAst" src="assets/img/astro.png" id="astro' + (i+1) +'">')
+                }
+
+            }
+        }
+                                
     </script>  
 </body>
 </html>
-
-nave.animate({
-    right: "700"
-},2500)
-
-while(m != null){
-            
-    console.log("Margem E: " + "canibais: " + m.canibais + " missionarios: " + m.missionarios + " canoa: " + m.canoa);
-    
-    if(m.lado_oposto != null){
-        console.log("Canoa  :  " + m.passageiros[0]+ " " + m.passageiros[1]);
-        console.log("Margem D: " + "canibais: " + m.lado_oposto.canibais + " missionarios: " + m.lado_oposto.missionarios + " canoa: " + m.lado_oposto.canoa);
-        console.log("----------------------------------------------------");
-    }
-    m = m.estado_anterior;
-}

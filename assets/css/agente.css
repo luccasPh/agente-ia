@@ -1,12 +1,44 @@
 body {
     background-image: url("../../assets/img/space.jpg");
 }
+button{
+        position: absolute;
+        top: 60%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        background-color: #555;
+        color: white;
+        font-size: 16px;
+        padding: 12px 24px;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+}
 
-#nave img {
+#titulo img{
+    position:absolute;
+    top:0;
+    left:30;
+    right:0;
+    bottom:300;
+    margin:auto;
+}
+
+#nave #nR {
     position:absolute;
     top:0;
     left:400;
     right:0;
+    bottom:0;
+    margin:auto;
+}
+
+#nave #nL {
+    position:absolute;
+    top:0;
+    left:0;
+    right:400;
     bottom:0;
     margin:auto;
 }

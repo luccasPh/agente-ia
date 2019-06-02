@@ -68,6 +68,7 @@ class Busca {
                     mg.passageiros[1] = this.missionarios_movimentos[i];
                     mg.missionarios = novo_estado_missionarios;
                     mg.estado_anterior = m;
+                    mg_oposto.estado_anterior = m.lado_oposto;
                     mg_oposto.canibais = novo_estado_canibais_oposto;
                     mg_oposto.missionarios = novo_estado_missionarios_oposto;
                     if (canoa === 1) {
